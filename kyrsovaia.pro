@@ -9,23 +9,23 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    addgroupdialog.cpp \
-    admin.cpp \
-    dialog.cpp \
-    main.cpp \
-    mainwindow.cpp
+    src/addgroupdialog.cpp \
+    src/admin.cpp \
+    src/dialog.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp
 
 HEADERS += \
-    addgroupdialog.h \
-    admin.h \
-    dialog.h \
-    mainwindow.h
+    src/addgroupdialog.h \
+    src/admin.h \
+    src/dialog.h \
+    src/mainwindow.h
 
 FORMS += \
-    addgroupdialog.ui \
-    admin.ui \
-    dialog.ui \
-    mainwindow.ui
+    src/addgroupdialog.ui \
+    src/admin.ui \
+    src/dialog.ui \
+    src/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
