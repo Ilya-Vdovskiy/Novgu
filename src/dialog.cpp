@@ -14,8 +14,13 @@ Dialog::Dialog(QWidget *parent)
     initDatabase();
     createTestData();
 
-    connect(ui->btnGroup1, &QPushButton::clicked, this, &Dialog::showGroup1);
-    connect(ui->btnGroup2, &QPushButton::clicked, this, &Dialog::showGroup2);
+    for(size_t i=0;i<2;i++){
+        auto btn = new QPushButton("Группа id:"+QString::number(i));
+        connect(btn, &QPushButton::clicked, this, [this,i](){
+            this->showGroup(i);
+        });
+        ui->verticalLayout_6->addWidget(btn);
+    }
     qDebug() << "Кнопки подключены";
 }
 
@@ -49,30 +54,19 @@ void Dialog::createTestData() {
                "('Кобылинский Сергей', 2)");
 }
 
-void Dialog::showGroup1() {
+void Dialog::showGroup(int groupId) {
     if(ui->stackedWidget->count() > 0) {
         QWidget* oldWidget = ui->stackedWidget->currentWidget();
         ui->stackedWidget->removeWidget(oldWidget);
         delete oldWidget;
     }
 
-    QTabWidget* groupTabs = createGroupTab(1);
+    QTabWidget* groupTabs = createGroupTab(groupId);
     ui->stackedWidget->addWidget(groupTabs);
     ui->stackedWidget->setCurrentWidget(groupTabs);
-    qDebug() << "Вкладки для группы 1 созданы";
+    qDebug() << "Вкладки для группы "<<groupId<<" созданы";
 }
 
-void Dialog::showGroup2() {
-    if(ui->stackedWidget->count() > 0) {
-        QWidget* oldWidget = ui->stackedWidget->currentWidget();
-        ui->stackedWidget->removeWidget(oldWidget);
-        delete oldWidget;
-    }
-
-    QTabWidget* groupTabs = createGroupTab(2);
-    ui->stackedWidget->addWidget(groupTabs);
-    ui->stackedWidget->setCurrentWidget(groupTabs);
-}
 
 QTabWidget* Dialog::createGroupTab(int groupId) {
     QTabWidget *tabWidget = new QTabWidget;

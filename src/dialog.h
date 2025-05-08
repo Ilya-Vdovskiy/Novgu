@@ -19,8 +19,7 @@ public:
     ~Dialog();
 
 private slots:
-    void showGroup1();
-    void showGroup2();
+    void showGroup(int groupId);
 
 private:
     Ui::Dialog *ui;
